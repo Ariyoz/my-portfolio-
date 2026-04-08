@@ -98,6 +98,7 @@
             padding-top: 100px;
             display: flex;
             align-items: center;
+            justify-content: center;
         }
 
         .hero-title {
@@ -312,6 +313,12 @@
                 margin-right: 0 !important;
             }
         }
+        #rotating-name {
+    color: var(--accent); /* highlight color */
+    border-right: 2px solid var(--accent); /* cursor effect */
+    padding-right: 5px;
+    white-space: nowrap;
+}
     </style>
 </head>
 
@@ -335,13 +342,16 @@
         </div>
     </nav>
 
-    <section class="hero container">
+    
+    <section class="hero container ">
         <div class="row w-100 align-items-center g-5">
-            <div class="col-lg-7 reveal">
-                <h6 class="text-accent fw-bold mb-3">MY NAME IS OBIKOYA AYOMIKUN I AM A CERTIFIED </h6>
+            <div class="col-md-12 reveal align-items-center justify-content-center">
                 <h1 class="hero-title">
-                    DIGITAL <br> <span class="outline-text">ARCHITECT</span> <br> & ENGINEER<span
-                        style="color:var(--accent)">_</span>
+        MY NAME IS <span id="rotating-name"></span> A
+</h1>
+                <h1 class="hero-title">
+         DIGITAL <br> <span class="outline-text">ARCHITECT</span> &ENGINEER<span
+                        style="color:var(--accent)">_</span></span>
                 </h1>
                 <p class="text-subtext fs-5 mt-4 mb-5 col-md-9"> A Frontend Developer & Graphic Designer that create
                     high-end digital experiences and brand systems.</p>
@@ -351,15 +361,16 @@
                         TALK</a>
                 </div>
             </div>
-            <div class="col-lg-5 reveal">
+            <!-- <div class="col-lg-5 reveal">
                 <div class="image-frame">
                     <div class="profile-img-container">
                         <img src="/IMAGE 4.jpg" alt="Emmanuel">
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
-    </section>
+    </section> 
+
 
     <section id="skills" class="container py-5">
         <h6 class="text-accent fw-bold mb-4">TECHNICAL STACK</h6>
@@ -570,6 +581,40 @@
     </footer>
 
     <script>
+        const names = ["OBIKOYA", "AYOMIKUN","EMMANUEL"];
+let i = 0;
+let j = 0;
+let currentName = '';
+let isDeleting = false;
+const speed = 150; // typing speed in ms
+const target = document.getElementById('rotating-name');
+
+function type() {
+    const fullName = names[i];
+    
+    if (isDeleting) {
+        currentName = fullName.substring(0, j--);
+    } else {
+        currentName = fullName.substring(0, j++);
+    }
+
+    target.textContent = currentName;
+
+    if (!isDeleting && j === fullName.length + 1) {
+        // pause at full name
+        setTimeout(() => { isDeleting = true; type(); }, 1000);
+        return;
+    }
+
+    if (isDeleting && j === 0) {
+        isDeleting = false;
+        i = (i + 1) % names.length; // move to next name
+    }
+
+    setTimeout(type, isDeleting ? speed / 2 : speed);
+}
+
+type();
         // Theme Toggle
         function toggleTheme() {
             const html = document.documentElement;
