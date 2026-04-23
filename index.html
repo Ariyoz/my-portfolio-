@@ -1,672 +1,888 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="dark">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emmanuel — Digital Architect</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
-        rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <style>
-        :root {
-            --bg: #050505;
-            --text: #ffffff;
-            --accent: #7c3aed;
-            --accent-glow: rgba(124, 58, 237, 0.3);
-            --subtext: #a1a1aa;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
-            --btn-secondary-text: #ffffff;
+      :root {
+        --bg: #050505;
+        --text: #ffffff;
+        --accent: #7c3aed;
+        --accent-glow: rgba(124, 58, 237, 0.3);
+        --subtext: #a1a1aa;
+        --glass: rgba(255, 255, 255, 0.03);
+        --border: rgba(255, 255, 255, 0.1);
+        --btn-secondary-text: #ffffff;
+      }
+
+      [data-theme="light"] {
+        --bg: #e7e4e4d7;
+        --text: #0f172a;
+        --accent: #4f46e5;
+        --accent-glow: rgba(79, 70, 229, 0.1);
+        --subtext: #475569;
+        --glass: rgba(0, 0, 0, 0.02);
+        --border: rgba(0, 0, 0, 0.1);
+        --btn-secondary-text: #0f172a;
+      }
+
+      /* GLOBAL FIX */
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        transition:
+          background 0.5s ease,
+          color 0.5s ease;
+        overflow-x: hidden;
+      }
+
+      /* IMAGE SAFETY */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      h1,
+      h2,
+      h3,
+      .nav-link {
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      /* --- Navbar --- */
+      .navbar {
+        backdrop-filter: blur(15px);
+        background: var(--glass);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .navbar-brand {
+        color: var(--text) !important;
+        transition: color 0.3s ease;
+      }
+
+      .navbar-brand img {
+        filter: brightness(0) invert(1);
+        transition: filter 0.3s ease;
+      }
+
+      [data-theme="light"] .navbar-brand img {
+        filter: brightness(0);
+      }
+
+      .nav-link {
+        color: var(--text) !important;
+        opacity: 0.7;
+        transition: 0.3s;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        font-weight: 700;
+      }
+
+      .nav-link:hover {
+        opacity: 1;
+        color: var(--accent) !important;
+      }
+
+      /* --- Hero --- */
+      .hero {
+        min-height: 100vh;
+        padding-top: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 8vw, 6rem);
+        font-weight: 800;
+        line-height: 0.9;
+      }
+
+      .outline-text {
+        color: transparent;
+        -webkit-text-stroke: 1px var(--text);
+        opacity: 0.2;
+      }
+
+      /* --- Custom Buttons --- */
+      .cta-main {
+        background: var(--accent);
+        color: #fff !important;
+        padding: 18px 40px;
+        border-radius: 100px;
+        text-decoration: none;
+        font-weight: 700;
+        display: inline-block;
+        transition: 0.4s;
+        border: none;
+      }
+
+      .cta-main:hover {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+      }
+
+      .btn-talk {
+        color: var(--btn-secondary-text) !important;
+        border: 1px solid var(--border);
+        background: var(--glass);
+        transition: 0.3s;
+        padding: 15px 30px !important;
+      }
+
+      .btn-talk:hover {
+        background: var(--accent);
+        color: #fff !important;
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .card-custom i {
+        transition:
+          transform 0.3s ease,
+          filter 0.3s ease;
+      }
+
+      .card-custom:hover i {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+      }
+
+      [data-theme="light"] .card-custom:hover i {
+        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.1));
+      }
+
+      /* --- Profile Image --- */
+      .image-frame {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        aspect-ratio: 4/5;
+      }
+
+      .profile-img-container {
+        width: 100%;
+        height: 100%;
+        background: var(--glass);
+        border: 1px solid var(--border);
+        border-radius: 40px;
+        overflow: hidden;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .profile-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(20%);
+      }
+
+      /* --- Cards & Forms --- */
+      .card-custom {
+        background: var(--glass);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 30px;
+        transition: 0.3s;
+        height: 100%;
+      }
+
+      .form-control {
+        background: var(--glass);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 15px;
+        border-radius: 12px;
+      }
+
+      .project-img {
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .card-custom:hover .project-img {
+        transform: scale(1.1);
+      }
+
+      .project-img-wrapper {
+        position: relative;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .project-img-wrapper::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+        transition: 0.3s;
+      }
+
+      .card-custom:hover .project-img-wrapper::after {
+        opacity: 0;
+      }
+
+      .form-control:focus {
+        background: var(--glass);
+        color: var(--text);
+        border-color: var(--accent);
+        box-shadow: none;
+      }
+
+      .form-control::placeholder {
+        color: var(--text);
+        opacity: 0.6;
+      }
+
+      /* --- Social Icons --- */
+      .social-icon {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--glass);
+        color: var(--text);
+        transition: 0.3s;
+        text-decoration: none;
+        border: 1px solid var(--border);
+      }
+
+      .social-icon:hover {
+        background: var(--accent);
+        color: white;
+        transform: translateY(-5px) rotate(8deg);
+      }
+
+      /* --- Animations --- */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
         }
 
-        [data-theme="light"] {
-            --bg: #fdfdfd;
-            --text: #0f172a;
-            --accent: #4f46e5;
-            --accent-glow: rgba(79, 70, 229, 0.1);
-            --subtext: #475569;
-            --glass: rgba(0, 0, 0, 0.02);
-            --border: rgba(0, 0, 0, 0.1);
-            --btn-secondary-text: #0f172a;
+        50% {
+          transform: translateY(-20px);
         }
+      }
 
-        /* ✅ GLOBAL FIX */
-        html,
-        body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: 0.8s ease-out;
+      }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            transition: background 0.5s ease, color 0.5s ease;
-            overflow-x: hidden;
-        }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-        /* ✅ IMAGE SAFETY */
-        img {
-            max-width: 100%;
-            height: auto;
+      .cursor-glow {
+        position: fixed;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          var(--accent-glow) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+      }
 
-        }
-
-        h1,
-        h2,
-        h3,
-        .nav-link {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* --- Navbar --- */
-        .navbar {
-            backdrop-filter: blur(15px);
-            background: var(--glass);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .navbar-brand {
-            color: var(--text) !important;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link {
-            color: var(--text) !important;
-            opacity: 0.7;
-            transition: 0.3s;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        .nav-link:hover {
-            opacity: 1;
-            color: var(--accent) !important;
-        }
-
-        /* --- Hero --- */
-        .hero {
-            min-height: 100vh;
-            padding-top: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 800;
-            line-height: 0.9;
-        }
-
-        .outline-text {
-            color: transparent;
-            -webkit-text-stroke: 1px var(--text);
-            opacity: 0.2;
-        }
-
-        /* --- Custom Buttons --- */
-        .cta-main {
-            background: var(--accent);
-            color: #fff !important;
-            padding: 18px 40px;
-            border-radius: 100px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            transition: 0.4s;
-            border: none;
-        }
-
-        .cta-main:hover {
-            transform: scale(1.05);
-            filter: brightness(1.1);
-        }
-
-        .btn-talk {
-            color: var(--btn-secondary-text) !important;
-            border: 1px solid var(--border);
-            background: var(--glass);
-            transition: 0.3s;
-        }
-
-        .card-custom i {
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .card-custom:hover i {
-            transform: scale(1.1);
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
-        }
-
-        [data-theme="light"] .card-custom:hover i {
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.1));
-        }
-
-        /* --- Profile Image --- */
-        .image-frame {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            aspect-ratio: 4/5;
-        }
-
-        .profile-img-container {
-            width: 100%;
-            height: 100%;
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 40px;
-            overflow: hidden;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .profile-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(20%);
-        }
-
-        /* --- Cards & Forms --- */
-        .card-custom {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 30px;
-            transition: 0.3s;
-            height: 100%;
-        }
-
-        .form-control {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 15px;
-            border-radius: 12px;
-        }
-
-        .project-img {
-            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .card-custom:hover .project-img {
-            transform: scale(1.1);
-        }
-
-        .project-img-wrapper {
-            position: relative;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .project-img-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
-            transition: 0.3s;
-        }
-
-        .card-custom:hover .project-img-wrapper::after {
-            opacity: 0;
-        }
-
-        .form-control:focus {
-            background: var(--glass);
-            color: var(--text);
-            border-color: var(--accent);
-            box-shadow: none;
-        }
-
-        .form-control::placeholder {
-            color: var(--text);
-            opacity: 0.6;
-        }
-
-        /* --- Social Icons --- */
-        .social-icon {
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: var(--glass);
-            color: var(--text);
-            transition: 0.3s;
-            text-decoration: none;
-            border: 1px solid var(--border);
-        }
-
-        .social-icon:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-5px) rotate(8deg);
-        }
-
-        /* --- Animations --- */
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+      /* MOBILE FIXES */
+      @media (max-width: 768px) {
         .cursor-glow {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-            transform: translate(-50%, -50%);
+          display: none;
         }
 
-        /* ✅ FIXED MARQUEE */
-        .marquee-strip {
-            background: var(--accent);
-            color: white;
-            padding: 20px 0;
-            transform: rotate(-1deg);
-            width: 100%;
-            margin-left: 0;
-            margin-top: 50px;
-            margin-bottom: 50px;
+        .row {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+      }
+
+      /* UTILITY CLASSES */
+      .text-accent {
+        color: var(--accent);
+      }
+
+      .text-subtext {
+        color: var(--subtext);
+      }
+
+      .object-fit-cover {
+        object-fit: cover;
+      }
+      .image-frame {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      /* AVAILABILITY BADGE */
+      .availability-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-size: 0.7rem;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      [data-theme="light"] .availability-badge {
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--text);
+      }
+
+      .availability-badge .dot {
+        width: 8px;
+        height: 8px;
+        background: #22c55e;
+        border-radius: 50%;
+      }
+
+      /* OVERLAY CARD */
+      .overlay-card {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        backdrop-filter: blur(15px);
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        text-align: left;
+        color: white;
+      }
+
+      [data-theme="light"] .overlay-card {
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--text);
+      }
+
+      /* NAME */
+      .overlay-name {
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 0;
+      }
+
+      /* ROLE */
+      .overlay-role {
+        font-size: 0.8rem;
+        color: var(--accent);
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+      }
+
+      /* TAGS */
+      .overlay-tags {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .overlay-tags span {
+        font-size: 0.7rem;
+        padding: 6px 12px;
+        border-radius: 50px;
+        border: 1px solid var(--border);
+        background: var(--glass);
+      }
+
+      /* MOBILE FIX */
+      @media (max-width: 576px) {
+        .overlay-name {
+          font-size: 1.5rem;
         }
 
-        /* ✅ MOBILE FIXES */
-        @media (max-width: 768px) {
-            .cursor-glow {
-                display: none;
-            }
-
-            .row {
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-            }
+        .overlay-card {
+          padding: 15px;
         }
-        #rotating-name {
-    color: var(--accent); /* highlight color */
-    border-right: 2px solid var(--accent); /* cursor effect */
-    padding-right: 5px;
-    white-space: nowrap;
-}
+      }
+
+      .profile-img-container::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle,
+          var(--accent-glow),
+          transparent 70%
+        );
+        z-index: -1;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="cursor-glow" id="glow"></div>
 
     <nav class="navbar navbar-expand-lg fixed-top py-3">
-        <div class="container">
-            <a class="navbar-brand fw-bold fs-4" href="#">ARIYOZ<span style="color:var(--accent)">.</span></a>
-            <div class="d-flex align-items-center">
-                <div class="d-none d-lg-flex">
-                    <a class="nav-link px-3" href="#work">Works</a>
-                    <a class="nav-link px-3" href="#services">Services</a>
-                    <a class="nav-link px-3" href="#contact">Contact</a>
-                </div>
-                <button class="btn ms-3" onclick="toggleTheme()" id="theme-btn">
-                    <i class="fas fa-sun" style="color:var(--accent)"></i>
-                </button>
-            </div>
+      <div class="container">
+        <a class="navbar-brand fw-bold fs-4 d-flex align-items-center" href="#">
+          ARIYOZ<span style="color: var(--accent)">.</span>
+        </a>
+        <div class="d-flex align-items-center">
+          <div class="d-none d-lg-flex">
+            <a class="nav-link px-3" href="#work">Works</a>
+            <a class="nav-link px-3" href="#services">Services</a>
+            <a class="nav-link px-3" href="#contact">Contact</a>
+          </div>
+          <button class="btn ms-3" onclick="toggleTheme()" id="theme-btn">
+            <i class="fas fa-sun" style="color: var(--accent)"></i>
+          </button>
         </div>
+      </div>
     </nav>
 
-    
-    <section class="hero container ">
-        <div class="row w-100 align-items-center g-5">
-            <div class="col-md-12 reveal align-items-center justify-content-center">
-                <h1 class="hero-title">
-        MY NAME IS <span id="rotating-name"></span> A
-</h1>
-                <h1 class="hero-title">
-         DIGITAL <br> <span class="outline-text">ARCHITECT</span> &ENGINEER<span
-                        style="color:var(--accent)">_</span></span>
-                </h1>
-                <p class="text-subtext fs-5 mt-4 mb-5 col-md-9"> A Frontend Developer & Graphic Designer that create
-                    high-end digital experiences and brand systems.</p>
-                <div class="d-flex gap-3">
-                    <a href="#work" class="cta-main">VIEW ARTIFACTS</a>
-                    <a href="#contact" class="btn rounded-pill px-4 d-flex align-items-center btn-talk fw-bold">LET'S
-                        TALK</a>
-                </div>
-            </div>
-            <!-- <div class="col-lg-5 reveal">
-                <div class="image-frame">
-                    <div class="profile-img-container">
-                        <img src="/IMAGE 4.jpg" alt="Emmanuel">
-                    </div>
-                </div>
-            </div> -->
-        </div>
-    </section> 
+    <section class="hero container">
+      <div class="row align-items-center g-5 flex-column-reverse flex-lg-row">
+        <!-- TEXT -->
+        <div
+          class="col-12 col-lg-6 reveal text-center text-lg-start"
+          data-aos="fade-up"
+        >
+          <h1 class="hero-title">
+            DIGITAL <br />
+            <span class="outline-text">ARCHITECT</span> & ENGINEER
+              </span
+            >
+          </h1>
 
+          <p class="text-subtext fs-5 mt-4 mb-5 mx-auto mx-lg-0 col-lg-10">
+            A Fullstack Developer & Graphic Designer that create high-end digital
+            experiences and brand systems.
+          </p>
+
+          <div
+            class="d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap"
+          >
+            <a href="#work" class="cta-main">VIEW ARTIFACTS</a>
+            <a href="#contact" class="btn rounded-pill btn-talk fw-bold"
+              >LET'S TALK</a
+            >
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6 text-center">
+          <div class="image-frame mx-auto">
+            <!-- PROFILE IMAGE -->
+            <div class="profile-img-container">
+              <img src="./IMAGE 4.jpg" alt="Emmanuel" />
+            </div>
+
+            <!-- AVAILABLE BADGE -->
+            <div class="availability-badge">
+              <span class="dot"></span> AVAILABLE FOR WORK
+            </div>
+
+            <!-- OVERLAY CARD -->
+            <div class="overlay-card">
+              <h2 class="overlay-name">OBIKOYA AYOMIKUN</h2>
+              <p class="overlay-role">DIGITAL DESIGNER</p>
+
+              <div class="overlay-tags">
+                <span>GRAPHICS DESIGN</span>
+                <span>FULLSTACK DEV</span>
+                <span>BRANDING</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section id="skills" class="container py-5">
-        <h6 class="text-accent fw-bold mb-4">TECHNICAL STACK</h6>
-        <div class="row g-3">
-            <div class="col-6 col-md-3 reveal">
-                <div class="card-custom text-center py-4">
-                    <i class="fab fa-html5 fa-3x mb-3" style="color: #e34c26;"></i>
-                    <h5 class="fw-bold mb-0">HTML5</h5>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 reveal">
-                <div class="card-custom text-center py-4">
-                    <i class="fab fa-css3-alt fa-3x mb-3" style="color: #264de4;"></i>
-                    <h5 class="fw-bold mb-0">CSS3</h5>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 reveal">
-                <div class="card-custom text-center py-4">
-                    <i class="fab fa-js fa-3x mb-3" style="color: #f7df1e;"></i>
-                    <h5 class="fw-bold mb-0">JavaScript</h5>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 reveal">
-                <div class="card-custom text-center py-4">
-                    <i class="fab fa-bootstrap fa-3x mb-3" style="color: #7952b3;"></i>
-                    <h5 class="fw-bold mb-0">Bootstrap 5</h5>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 reveal">
-                <div class="card-custom text-center py-4">
-                    <i class="fab fa-react fa-3x mb-3" style="color: #61dbfb;"></i>
-                    <h5 class="fw-bold mb-0">React</h5>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 reveal">
-                <div class="card-custom text-center py-4">
-                    <i class="fab fa-github fa-3x mb-3"></i>
-                    <h5 class="fw-bold mb-0">Git/GitHub</h5>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 reveal">
-                <div class="card-custom text-center py-4">
-                    <i class="fas fa-bezier-curve fa-3x mb-3 text-accent"></i>
-                    <h5 class="fw-bold mb-0">UI Design</h5>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 reveal">
-                <div class="card-custom text-center py-4">
-                    <i class="fab fa-wordpress fa-3x mb-3" style="color: #21759b;"></i>
-                    <h5 class="fw-bold mb-0">WordPress</h5>
-                </div>
-            </div>
+      <h6 class="text-accent fw-bold mb-4">TECHNICAL STACK</h6>
+      <div class="row g-3">
+        <div class="col-6 col-md-3 reveal" data-aos="fade-up">
+          <div class="card-custom text-center py-4">
+            <i class="fab fa-html5 fa-3x mb-3" style="color: #e34c26"></i>
+            <h5 class="fw-bold mb-0">HTML5</h5>
+          </div>
         </div>
+        <div class="col-6 col-md-3 reveal" data-aos="fade-up">
+          <div class="card-custom text-center py-4">
+            <i class="fab fa-css3-alt fa-3x mb-3" style="color: #264de4"></i>
+            <h5 class="fw-bold mb-0">CSS3</h5>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal" data-aos="fade-up">
+          <div class="card-custom text-center py-4">
+            <i class="fab fa-js fa-3x mb-3" style="color: #f7df1e"></i>
+            <h5 class="fw-bold mb-0">JavaScript</h5>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal" data-aos="fade-up">
+          <div class="card-custom text-center py-4">
+            <i class="fab fa-bootstrap fa-3x mb-3" style="color: #7952b3"></i>
+            <h5 class="fw-bold mb-0">Bootstrap 5</h5>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal" data-aos="fade-up">
+          <div class="card-custom text-center py-4">
+            <i class="fab fa-react fa-3x mb-3" style="color: #61dbfb"></i>
+            <h5 class="fw-bold mb-0">React</h5>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal" data-aos="fade-up">
+          <div class="card-custom text-center py-4">
+            <i class="fab fa-github fa-3x mb-3"></i>
+            <h5 class="fw-bold mb-0">Git/GitHub</h5>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal" data-aos="fade-up">
+          <div class="card-custom text-center py-4">
+            <i class="fas fa-bezier-curve fa-3x mb-3 text-accent"></i>
+            <h5 class="fw-bold mb-0">UI Design</h5>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 reveal" data-aos="fade-up">
+          <div class="card-custom text-center py-4">
+            <i class="fab fa-wordpress fa-3x mb-3" style="color: #21759b"></i>
+            <h5 class="fw-bold mb-0">WordPress</h5>
+          </div>
+        </div>
+      </div>
     </section>
     <section id="work" class="container py-5">
-        <div class="d-flex justify-content-between align-items-end mb-5 reveal">
-            <div>
-                <h6 class="text-accent fw-bold mb-2">PORTFOLIO</h6>
-                <h2 class="fw-bold display-5">Selected Artifacts</h2>
+      <div
+        class="d-flex justify-content-between align-items-end mb-5 reveal"
+        data-aos="fade-up"
+      >
+        <div>
+          <h6 class="text-accent fw-bold mb-2">PORTFOLIO</h6>
+          <h2 class="fw-bold display-5">Selected Artifacts</h2>
+        </div>
+        <p class="text-subtext d-none d-md-block col-md-4">
+          A collection of web systems and visual identities crafted with
+          precision and purpose.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 reveal" data-aos="fade-up">
+          <div class="card-custom p-0 overflow-hidden">
+            <div
+              class="project-img-wrapper"
+              style="height: 300px; background: #111; overflow: hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+                class="w-100 h-100 object-fit-cover project-img"
+                alt="Newfoundland Tourism"
+              />
             </div>
-            <p class="text-subtext d-none d-md-block col-md-4">A collection of web systems and visual identities crafted
-                with precision and purpose.</p>
+            <div class="p-4">
+              <div
+                class="d-flex justify-content-between align-items-start mb-2"
+              >
+                <h3 class="fw-bold h4 mb-0">Newfoundland Tourism</h3>
+                <a href="#" class="text-accent"
+                  ><i class="fas fa-external-link-alt"></i
+                ></a>
+              </div>
+              <p class="text-subtext small mb-3">
+                Luxury tourism interface built with Bootstrap 5. Features smooth
+                scroll animations and a custom booking UI.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="row g-4">
-            <div class="col-md-6 reveal">
-                <div class="card-custom p-0 overflow-hidden">
-                    <div class="project-img-wrapper" style="height: 300px; background: #111; overflow: hidden;">
-                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
-                            class="w-100 h-100 object-fit-cover project-img" alt="Newfoundland Tourism">
-                    </div>
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h3 class="fw-bold h4 mb-0">Newfoundland Tourism</h3>
-                            <a href="#" class="text-accent"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                        <p class="text-subtext small mb-3">Luxury tourism interface built with Bootstrap 5. Features
-                            smooth scroll animations and a custom booking UI.</p>
-
-                    </div>
-                </div>
+        <div class="col-md-6 reveal" data-aos="fade-up">
+          <div class="card-custom p-0 overflow-hidden">
+            <div
+              class="project-img-wrapper"
+              style="height: 300px; background: #111; overflow: hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80"
+                class="w-100 h-100 object-fit-cover project-img"
+                alt="Telemedizin"
+              />
             </div>
-
-            <div class="col-md-6 reveal">
-                <div class="card-custom p-0 overflow-hidden">
-                    <div class="project-img-wrapper" style="height: 300px; background: #111; overflow: hidden;">
-                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80"
-                            class="w-100 h-100 object-fit-cover project-img" alt="Telemedizin">
-                    </div>
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h3 class="fw-bold h4 mb-0">Telemedizin</h3>
-                            <a href="#" class="text-accent"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                        <p class="text-subtext small mb-3">A healthcare digital transformation project. Focusing on
-                            medical data visualization and clean user dashboards.</p>
-
-                    </div>
-                </div>
+            <div class="p-4">
+              <div
+                class="d-flex justify-content-between align-items-start mb-2"
+              >
+                <h3 class="fw-bold h4 mb-0">Telemedizin</h3>
+                <a href="#" class="text-accent"
+                  ><i class="fas fa-external-link-alt"></i
+                ></a>
+              </div>
+              <p class="text-subtext small mb-3">
+                A healthcare digital transformation project. Focusing on medical
+                data visualization and clean user dashboards.
+              </p>
             </div>
-
-            <div class="col-md-6 reveal">
-                <div class="card-custom p-0 overflow-hidden">
-                    <div class="project-img-wrapper" style="height: 300px; background: #111; overflow: hidden;">
-                        <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=800&q=80"
-                            class="w-100 h-100 object-fit-cover project-img" alt="SQWAD Assets">
-                    </div>
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h3 class="fw-bold h4 mb-0">SQWAD Ecosystem</h3>
-                            <a href="#" class="text-accent"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                        <p class="text-subtext small mb-3">Branding and community assets for a blockchain-based meme
-                            project. Includes logo systems and social media kits.</p>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 reveal">
-                <div class="card-custom p-0 overflow-hidden">
-                    <div class="project-img-wrapper" style="height: 300px; background: #111; overflow: hidden;">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
-                            class="w-100 h-100 object-fit-cover project-img" alt="Business Dash">
-                    </div>
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h3 class="fw-bold h4 mb-0">Corporate Dashboard</h3>
-                            <a href="#" class="text-accent"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                        <p class="text-subtext small mb-3">A custom CRM dashboard designed for local businesses in Ijebu
-                            Ode to track their inventory and sales.</p>
-
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div class="col-md-6 reveal" data-aos="fade-up">
+          <div class="card-custom p-0 overflow-hidden">
+            <div
+              class="project-img-wrapper"
+              style="height: 300px; background: #111; overflow: hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=800&q=80"
+                class="w-100 h-100 object-fit-cover project-img"
+                alt="SQWAD Assets"
+              />
+            </div>
+            <div class="p-4">
+              <div
+                class="d-flex justify-content-between align-items-start mb-2"
+              >
+                <h3 class="fw-bold h4 mb-0">SQWAD Ecosystem</h3>
+                <a href="#" class="text-accent"
+                  ><i class="fas fa-external-link-alt"></i
+                ></a>
+              </div>
+              <p class="text-subtext small mb-3">
+                Branding and community assets for a blockchain-based meme
+                project. Includes logo systems and social media kits.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 reveal" data-aos="fade-up">
+          <div class="card-custom p-0 overflow-hidden">
+            <div
+              class="project-img-wrapper"
+              style="height: 300px; background: #111; overflow: hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+                class="w-100 h-100 object-fit-cover project-img"
+                alt="Business Dash"
+              />
+            </div>
+            <div class="p-4">
+              <div
+                class="d-flex justify-content-between align-items-start mb-2"
+              >
+                <h3 class="fw-bold h4 mb-0">Corporate Dashboard</h3>
+                <a href="#" class="text-accent"
+                  ><i class="fas fa-external-link-alt"></i
+                ></a>
+              </div>
+              <p class="text-subtext small mb-3">
+                A custom CRM dashboard designed for local businesses in Ijebu
+                Ode to track their inventory and sales.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-
-
-
-
     <section id="services" class="container py-5">
-        <h6 class="text-accent fw-bold mb-4">SERVICES</h6>
-        <div class="row g-4">
-            <div class="col-lg-4 reveal">
-                <div class="card-custom">
-                    <i class="fas fa-layer-group fa-2x mb-3 text-accent"></i>
-                    <h4>Frontend Dev</h4>
-                    <p class="small text-subtext">Crafting responsive, user-friendly websites with HTML, CSS, and JS.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-4 reveal">
-                <div class="card-custom">
-                    <i class="fas fa-pen-nib fa-2x mb-3 text-accent"></i>
-                    <h4>Graphic Design</h4>
-                    <p class="small text-subtext">Creating visual identities, logos, and digital assets that stand out.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-4 reveal">
-                <div class="card-custom">
-                    <i class="fas fa-bullhorn fa-2x mb-3 text-accent"></i>
-                    <h4>Community Lead</h4>
-                    <p class="small text-subtext">Managing digital communities and driving growth for tech projects.</p>
-                </div>
-            </div>
+      <h6 class="text-accent fw-bold mb-4">SERVICES</h6>
+      <div class="row g-4">
+        <div class="col-lg-4 reveal" data-aos="fade-up">
+          <div class="card-custom">
+            <i class="fas fa-layer-group fa-2x mb-3 text-accent"></i>
+            <h4>Frontend Dev</h4>
+            <p class="small text-subtext">
+              Crafting responsive, user-friendly websites with HTML, CSS, and
+              JS.
+            </p>
+          </div>
         </div>
+        <div class="col-lg-4 reveal" data-aos="fade-up">
+          <div class="card-custom">
+            <i class="fas fa-pen-nib fa-2x mb-3 text-accent"></i>
+            <h4>Graphic Design</h4>
+            <p class="small text-subtext">
+              Creating visual identities, logos, and digital assets that stand
+              out.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4 reveal" data-aos="fade-up">
+          <div class="card-custom">
+            <i class="fas fa-bullhorn fa-2x mb-3 text-accent"></i>
+            <h4>Community Lead</h4>
+            <p class="small text-subtext">
+              Managing digital communities and driving growth for tech projects.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="contact" class="container py-5 mt-5">
-        <div class="row g-5">
-            <div class="col-lg-5 reveal">
-                <h2 class="fw-bold mb-4">Connect with me.</h2>
-                <div class="d-flex gap-3 mb-5">
-                    <a href="https://github.com/Ariyoz" class="social-icon" target="_blank"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://x.com/ethen_crypt?s=21" class="social-icon" target="_blank"><i
-                            class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/in/ayomikun-obikoya-663aa4280?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
-                        class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://www.instagram.com/ariyoz_01?igsh=MWR4YjFwNDBzZGlhdg%3D%3D&utm_source=qr"
-                        class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
-                <p class="text-subtext">Based in Nigeria. Delivering worldwide solutions.</p>
-            </div>
-            <div class="col-lg-7 reveal">
-                <div class="card-custom">
-                    <form id="whatsappForm">
-                        <div class="mb-3">
-                            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
-                        </div>
-                        <div class="mb-3">
-                            <textarea id="message" rows="4" class="form-control"
-                                placeholder="Tell me about your project" required></textarea>
-                        </div>
-                        <button type="submit" class="cta-main w-100">SEND TO WHATSAPP</button>
-                    </form>
-                </div>
-            </div>
+      <div class="row g-5">
+        <div class="col-lg-5 reveal" data-aos="fade-up">
+          <h2 class="fw-bold mb-4">Connect with me.</h2>
+          <div class="d-flex gap-3 mb-5">
+            <a
+              href="https://github.com/Ariyoz"
+              class="social-icon"
+              target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="https://x.com/ethen_crypt?s=21"
+              class="social-icon"
+              target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/ayomikun-obikoya-663aa4280?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+              class="social-icon"
+              target="_blank"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/ariyoz_01?igsh=MWR4YjFwNDBzZGlhdg%3D%3D&utm_source=qr"
+              class="social-icon"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+          <p class="text-subtext">
+            Based in Nigeria. Delivering worldwide solutions.
+          </p>
         </div>
+        <div class="col-lg-7 reveal" data-aos="fade-up">
+          <div class="card-custom">
+            <form id="whatsappForm">
+              <div class="mb-3">
+                <input
+                  type="text"
+                  id="name"
+                  class="form-control"
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <textarea
+                  id="message"
+                  rows="4"
+                  class="form-control"
+                  placeholder="Tell me about your project"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="cta-main w-100">
+                SEND TO WHATSAPP
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <footer class="py-5 text-center border-top border-secondary opacity-50 mt-5">
-        <p class="small mb-0">© 2026 EMMANUEL // BUILT WITH PRECISION</p>
+    <footer
+      class="py-5 text-center border-top border-secondary opacity-50 mt-5"
+    >
+      <p class="small mb-0">© 2026 EMMANUEL // BUILT WITH PRECISION</p>
     </footer>
 
-    <script>
-        const names = ["OBIKOYA", "AYOMIKUN","EMMANUEL"];
-let i = 0;
-let j = 0;
-let currentName = '';
-let isDeleting = false;
-const speed = 150; // typing speed in ms
-const target = document.getElementById('rotating-name');
-
-function type() {
-    const fullName = names[i];
-    
-    if (isDeleting) {
-        currentName = fullName.substring(0, j--);
-    } else {
-        currentName = fullName.substring(0, j++);
-    }
-
-    target.textContent = currentName;
-
-    if (!isDeleting && j === fullName.length + 1) {
-        // pause at full name
-        setTimeout(() => { isDeleting = true; type(); }, 1000);
-        return;
-    }
-
-    if (isDeleting && j === 0) {
-        isDeleting = false;
-        i = (i + 1) % names.length; // move to next name
-    }
-
-    setTimeout(type, isDeleting ? speed / 2 : speed);
-}
-
-type();
-        // Theme Toggle
-        function toggleTheme() {
-            const html = document.documentElement;
-            const isDark = html.getAttribute('data-theme') === 'dark';
-            const targetTheme = isDark ? 'light' : 'dark';
-            html.setAttribute('data-theme', targetTheme);
-            document.getElementById('theme-btn').innerHTML = targetTheme === 'dark'
-                ? '<i class="fas fa-sun" style="color:var(--accent)"></i>'
-                : '<i class="fas fa-moon" style="color:var(--accent)"></i>';
-        }
-
-        // WhatsApp Form Logic
-        document.getElementById('whatsappForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const msg = document.getElementById('message').value;
-            // Clean Nigerian format: 234 + number
-            const phone = "2349044803449";
-            const encodedMsg = encodeURIComponent(`Hi Emmanuel, I'm ${name}. ${msg}`);
-            window.open(`https://wa.me/${phone}?text=${encodedMsg}`, '_blank');
-        });
-
-        // Reveal animations on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-        </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        AOS.init();
+      AOS.init();
     </script>
-
-    <!-- REST OF YOUR CODE REMAINS EXACTLY THE SAME -->
 
     <script>
-        const glow = document.getElementById('glow');
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
+      function toggleTheme() {
+        const html = document.documentElement;
+        if (html.getAttribute("data-theme") === "dark") {
+          html.setAttribute("data-theme", "light");
+          localStorage.setItem("theme", "light");
+        } else {
+          html.setAttribute("data-theme", "dark");
+          localStorage.setItem("theme", "dark");
+        }
+      }
+
+      // Load saved theme on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      });
+
+      const glow = document.getElementById("glow");
+      window.addEventListener("mousemove", (e) => {
+        glow.style.left = e.clientX + "px";
+        glow.style.top = e.clientY + "px";
+      });
+
+      // WhatsApp Form Handler
+      document
+        .getElementById("whatsappForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("name").value.trim();
+          const message = document.getElementById("message").value.trim();
+
+          if (!name || !message) {
+            alert("Please fill in all fields");
+            return;
+          }
+
+          // Replace with your WhatsApp number (format: country code + number, e.g., 234...)
+          const phoneNumber = "2347066629661"; // Update this with your WhatsApp number
+          const text = `Hi! My name is ${name}. ${message}`;
+          const encodedText = encodeURIComponent(text);
+          const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+
+          window.open(whatsappURL, "_blank");
+
+          // Clear form
+          this.reset();
         });
     </script>
-
-</body>
-
+  </body>
 </html>
